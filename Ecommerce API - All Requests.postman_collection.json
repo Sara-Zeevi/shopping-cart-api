@@ -1,0 +1,653 @@
+{
+	"info": {
+		"_postman_id": "e3fa8eec-251b-4955-9246-1c78581816dc",
+		"name": "Ecommerce API - All Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46193247",
+		"_collection_link": "https://sariz26264-6602.postman.co/workspace/Test-commerceserver~d66bd6bd-2e4e-4779-8974-94a44f70c901/collection/46193247-e3fa8eec-251b-4955-9246-1c78581816dc?action=share&source=collection_link&creator=46193247"
+	},
+	"item": [
+		{
+			"name": "Ecommerce - Cart",
+			"item": [
+				{
+					"name": "addProductToCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Describe the expected response shape with JSON Schema",
+									"// https://json-schema.org/",
+									"const expectedSchema = {",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"data\": {",
+									"      \"type\": \"array\",",
+									"      \"items\": {",
+									"        \"type\": \"object\",",
+									"        \"properties\": {",
+									"          \"title\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"author\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"published\": {",
+									"            \"type\": \"integer\"",
+									"          }",
+									"        },",
+									"        \"required\": [",
+									"          \"title\",",
+									"          \"author\",",
+									"          \"published\"",
+									"        ]",
+									"      }",
+									"    }",
+									"  }",
+									"};",
+									"",
+									"// Test that the response matches the expected schema using built-in schema verification",
+									"pm.test('response matches JSON schema', () => {",
+									"    pm.response.to.have.jsonSchema(expectedSchema);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": 2,   \n    \"quantity\": 2    \n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cart/add",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart",
+								"add"
+							]
+						},
+						"description": "This request has a test using Postman's built-in support for JSON Schema verification to ensure that the response data matches the expected shape.\n\nSchema validation can be used to verify your API returns data in the right format, without worrying about the exact values. This might be helpful when testing various inputs for a consistent output format.\n\nLearn more about JSON Schema at [https://json-schema.org](https://json-schema.org/.)."
+					},
+					"response": []
+				},
+				{
+					"name": "getCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Describe the expected response shape with JSON Schema",
+									"// https://json-schema.org/",
+									"const expectedSchema = {",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"data\": {",
+									"      \"type\": \"array\",",
+									"      \"items\": {",
+									"        \"type\": \"object\",",
+									"        \"properties\": {",
+									"          \"title\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"author\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"published\": {",
+									"            \"type\": \"integer\"",
+									"          }",
+									"        },",
+									"        \"required\": [",
+									"          \"title\",",
+									"          \"author\",",
+									"          \"published\"",
+									"        ]",
+									"      }",
+									"    }",
+									"  }",
+									"};",
+									"",
+									"// Test that the response matches the expected schema using built-in schema verification",
+									"pm.test('response matches JSON schema', () => {",
+									"    pm.response.to.have.jsonSchema(expectedSchema);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cart",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart"
+							]
+						},
+						"description": "This request has a test using Postman's built-in support for JSON Schema verification to ensure that the response data matches the expected shape.\n\nSchema validation can be used to verify your API returns data in the right format, without worrying about the exact values. This might be helpful when testing various inputs for a consistent output format.\n\nLearn more about JSON Schema at [https://json-schema.org](https://json-schema.org/.)."
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProductFromCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Describe the expected response shape with JSON Schema",
+									"// https://json-schema.org/",
+									"const expectedSchema = {",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"data\": {",
+									"      \"type\": \"array\",",
+									"      \"items\": {",
+									"        \"type\": \"object\",",
+									"        \"properties\": {",
+									"          \"title\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"author\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"published\": {",
+									"            \"type\": \"integer\"",
+									"          }",
+									"        },",
+									"        \"required\": [",
+									"          \"title\",",
+									"          \"author\",",
+									"          \"published\"",
+									"        ]",
+									"      }",
+									"    }",
+									"  }",
+									"};",
+									"",
+									"// Test that the response matches the expected schema using built-in schema verification",
+									"pm.test('response matches JSON schema', () => {",
+									"    pm.response.to.have.jsonSchema(expectedSchema);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cart/remove/10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart",
+								"remove",
+								"10"
+							]
+						},
+						"description": "This request has a test using Postman's built-in support for JSON Schema verification to ensure that the response data matches the expected shape.\n\nSchema validation can be used to verify your API returns data in the right format, without worrying about the exact values. This might be helpful when testing various inputs for a consistent output format.\n\nLearn more about JSON Schema at [https://json-schema.org](https://json-schema.org/.)."
+					},
+					"response": []
+				},
+				{
+					"name": "changeProductAmountInCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Describe the expected response shape with JSON Schema",
+									"// https://json-schema.org/",
+									"const expectedSchema = {",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"data\": {",
+									"      \"type\": \"array\",",
+									"      \"items\": {",
+									"        \"type\": \"object\",",
+									"        \"properties\": {",
+									"          \"title\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"author\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"published\": {",
+									"            \"type\": \"integer\"",
+									"          }",
+									"        },",
+									"        \"required\": [",
+									"          \"title\",",
+									"          \"author\",",
+									"          \"published\"",
+									"        ]",
+									"      }",
+									"    }",
+									"  }",
+									"};",
+									"",
+									"// Test that the response matches the expected schema using built-in schema verification",
+									"pm.test('response matches JSON schema', () => {",
+									"    pm.response.to.have.jsonSchema(expectedSchema);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": 1,   \n    \"quantity\":3    \n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cart/update-quantity",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart",
+								"update-quantity"
+							]
+						},
+						"description": "This request has a test using Postman's built-in support for JSON Schema verification to ensure that the response data matches the expected shape.\n\nSchema validation can be used to verify your API returns data in the right format, without worrying about the exact values. This might be helpful when testing various inputs for a consistent output format.\n\nLearn more about JSON Schema at [https://json-schema.org](https://json-schema.org/.)."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ecommerce - Category",
+			"item": [
+				{
+					"name": "getCategories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Describe the expected response shape with JSON Schema",
+									"// https://json-schema.org/",
+									"const expectedSchema = {",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"data\": {",
+									"      \"type\": \"array\",",
+									"      \"items\": {",
+									"        \"type\": \"object\",",
+									"        \"properties\": {",
+									"          \"title\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"author\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"published\": {",
+									"            \"type\": \"integer\"",
+									"          }",
+									"        },",
+									"        \"required\": [",
+									"          \"title\",",
+									"          \"author\",",
+									"          \"published\"",
+									"        ]",
+									"      }",
+									"    }",
+									"  }",
+									"};",
+									"",
+									"// Test that the response matches the expected schema using built-in schema verification",
+									"pm.test('response matches JSON schema', () => {",
+									"    pm.response.to.have.jsonSchema(expectedSchema);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categories"
+							]
+						},
+						"description": "This request has a test using Postman's built-in support for JSON Schema verification to ensure that the response data matches the expected shape.\n\nSchema validation can be used to verify your API returns data in the right format, without worrying about the exact values. This might be helpful when testing various inputs for a consistent output format.\n\nLearn more about JSON Schema at [https://json-schema.org](https://json-schema.org/.)."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ecommerce - Login",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse the JSON response",
+									"const responseJson = pm.response.json();",
+									"",
+									"// Check if the response contains an access_token",
+									"if (responseJson && responseJson.access_token) {",
+									"    // Set the access_token as an environment variable",
+									"    pm.environment.set(\"jwt_token\", responseJson.access_token);",
+									"    console.log(\"JWT Token saved to environment variable 'jwt_token':\", responseJson.access_token);",
+									"} else {",
+									"    console.log(\"No access_token found in the login response.\");",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"newuser123\",\n    \"password\": \"StrongPassword123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "This request has a test using Postman's built-in support for JSON Schema verification to ensure that the response data matches the expected shape.\n\nSchema validation can be used to verify your API returns data in the right format, without worrying about the exact values. This might be helpful when testing various inputs for a consistent output format.\n\nLearn more about JSON Schema at [https://json-schema.org](https://json-schema.org/.)."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ecommerce - Products",
+			"item": [
+				{
+					"name": "getProducts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Describe the expected response shape with JSON Schema",
+									"// https://json-schema.org/",
+									"const expectedSchema = {",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"data\": {",
+									"      \"type\": \"array\",",
+									"      \"items\": {",
+									"        \"type\": \"object\",",
+									"        \"properties\": {",
+									"          \"title\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"author\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"published\": {",
+									"            \"type\": \"integer\"",
+									"          }",
+									"        },",
+									"        \"required\": [",
+									"          \"title\",",
+									"          \"author\",",
+									"          \"published\"",
+									"        ]",
+									"      }",
+									"    }",
+									"  }",
+									"};",
+									"",
+									"// Test that the response matches the expected schema using built-in schema verification",
+									"pm.test('response matches JSON schema', () => {",
+									"    pm.response.to.have.jsonSchema(expectedSchema);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/categories/1/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categories",
+								"1",
+								"products"
+							]
+						},
+						"description": "This request has a test using Postman's built-in support for JSON Schema verification to ensure that the response data matches the expected shape.\n\nSchema validation can be used to verify your API returns data in the right format, without worrying about the exact values. This might be helpful when testing various inputs for a consistent output format.\n\nLearn more about JSON Schema at [https://json-schema.org](https://json-schema.org/.)."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ecommerce - Regression",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Describe the expected response shape with JSON Schema",
+									"// https://json-schema.org/",
+									"const expectedSchema = {",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"data\": {",
+									"      \"type\": \"array\",",
+									"      \"items\": {",
+									"        \"type\": \"object\",",
+									"        \"properties\": {",
+									"          \"title\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"author\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"published\": {",
+									"            \"type\": \"integer\"",
+									"          }",
+									"        },",
+									"        \"required\": [",
+									"          \"title\",",
+									"          \"author\",",
+									"          \"published\"",
+									"        ]",
+									"      }",
+									"    }",
+									"  }",
+									"};",
+									"",
+									"// Test that the response matches the expected schema using built-in schema verification",
+									"pm.test('response matches JSON schema', () => {",
+									"    pm.response.to.have.jsonSchema(expectedSchema);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"newuser123\",\n    \"password\": \"StrongPassword123!\",\n    \"email\": \"newuser@example.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "This request has a test using Postman's built-in support for JSON Schema verification to ensure that the response data matches the expected shape.\n\nSchema validation can be used to verify your API returns data in the right format, without worrying about the exact values. This might be helpful when testing various inputs for a consistent output format.\n\nLearn more about JSON Schema at [https://json-schema.org](https://json-schema.org/.)."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
